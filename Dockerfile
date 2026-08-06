@@ -12,12 +12,11 @@ COPY pom.xml .
 COPY src ./src
 
 # Executa o build do Maven. O -DskipTests pula a execução dos testes para acelerar o build.
-RUN mvn clean package
-
+RUN mvn clean package -DskipTests
 
 # Estágio 2: Execução da aplicação
 # Usamos uma imagem base slim do OpenJDK 21, que é menor e mais segura
-FROM openjdk:21-slim
+FROM eclipse-temurin:21-jre-jammy
 
 # Define o diretório de trabalho
 WORKDIR /app
